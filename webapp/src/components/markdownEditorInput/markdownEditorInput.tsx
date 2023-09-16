@@ -18,7 +18,7 @@ import {useAppSelector} from '../../store/hooks'
 import {IUser} from '../../user'
 import {getBoardUsersList, getMe} from '../../store/users'
 import createLiveMarkdownPlugin from '../live-markdown-plugin/liveMarkdownPlugin'
-import {useHasPermissions} from '../../hooks/permissions'
+import {useHasPermissions, useHasPermissionsSearch} from '../../hooks/permissions'
 import {Permission} from '../../constants'
 import {BoardMember, BoardTypeOpen, MemberRole} from '../../blocks/board'
 import mutator from '../../mutator'
@@ -65,7 +65,7 @@ const MarkdownEditorInput = (props: Props): ReactElement => {
     const board = useAppSelector(getCurrentBoard)
     const clientConfig = useAppSelector<ClientConfig>(getClientConfig)
     const ref = useRef<Editor>(null)
-    const allowManageBoardRoles = useHasPermissions(board.teamId, board.id, [Permission.ManageBoardRoles])
+    const allowManageBoardRoles = useHasPermissionsSearch(board.teamId, board.id, [Permission.ManageBoardRoles])
     const [confirmAddUser, setConfirmAddUser] = useState<IUser|null>(null)
     const me = useAppSelector<IUser|null>(getMe)
 
