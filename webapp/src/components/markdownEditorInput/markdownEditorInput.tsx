@@ -65,7 +65,7 @@ const MarkdownEditorInput = (props: Props): ReactElement => {
     const board = useAppSelector(getCurrentBoard)
     const clientConfig = useAppSelector<ClientConfig>(getClientConfig)
     const ref = useRef<Editor>(null)
-    const allowManageBoardRoles = useHasPermissionsSearch(board.teamId, board.id, [Permission.ManageBoardRoles])
+    const allowManageBoardRoles = useHasPermissions(board.teamId, board.id, [Permission.ManageBoardRoles, Permission.ManageBoardProperties, Permission.CommentBoardCards, Permission.ViewBoard])
     const [confirmAddUser, setConfirmAddUser] = useState<IUser|null>(null)
     const me = useAppSelector<IUser|null>(getMe)
 
